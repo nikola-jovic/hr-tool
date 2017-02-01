@@ -46,6 +46,7 @@
     <Compile Include="BaseEmployee.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="IWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

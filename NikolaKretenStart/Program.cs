@@ -26,17 +26,31 @@ namespace NikolaKretenStart
             {
                 _consoleWriter.WriteToConsole("Enter first name of an employee: ");
                 var empFirstName = Console.ReadLine();
+                while (string.IsNullOrEmpty(empFirstName))
+                {
+                    _consoleWriter.WriteToConsole("Please enter a valid value for employee name!");
+                    empFirstName = Console.ReadLine();
+                }
+
 
                 _consoleWriter.WriteToConsole("Enter last name of an employee: ");
                 var empLastName = Console.ReadLine();
+                while (string.IsNullOrEmpty(empLastName))
+                {
+                    _consoleWriter.WriteToConsole("Please enter a valid value for employee last name!");
+                    empLastName = Console.ReadLine();
+                }
 
                 _consoleWriter.WriteToConsole("Enter age of an employee: ");
                 var empAge = Console.ReadLine();
 
+                _consoleWriter.WriteToConsole("Enter employee's departman: ");
+                var empDepartman = Console.ReadLine();
+
                 _consoleWriter.WriteToConsole("Enter role of an employee: ");
                 var empRole = Console.ReadLine();
 
-                var employee = new Employee(empFirstName, empLastName, int.Parse(empAge), (RoleType)Enum.Parse(typeof(RoleType), empRole));
+                var employee = new Employee(empFirstName, empLastName, int.Parse(empAge), (DepartmanType)Enum.Parse(typeof(DepartmanType), empDepartman), (RoleType)Enum.Parse(typeof(RoleType), empRole));
 
 
                 company.EmployeeList.Add(employee);
@@ -57,7 +71,7 @@ namespace NikolaKretenStart
                     {
                         foreach (var emp in company.EmployeeList)
                         {
-                            _consoleWriter.WriteToConsole(String.Format("Employee name is {0}, Last Name is {1}, age is {2} and his role is {3}", emp.FirstName, emp.LastName, emp.Age, emp.Role.GetRoleName()));
+                            _consoleWriter.WriteToConsole(String.Format("Employee name is {0}, Last Name is {1}, age is {2}, his departman is {3} and his role is {4}", emp.FirstName, emp.LastName, emp.Age, emp.DepartmanType.GetDepartmanName(), emp.Role.GetRoleName()));
 
                         }
                         break;
@@ -106,26 +120,5 @@ namespace NikolaKretenStart
         //}
     }
 
-    public static class ExtensionMethods
-    {
-        public static string GetRoleName(this RoleType roleType)
-        {
-            switch (roleType)
-            {
-                case RoleType.CTO:
-                    return "CTO";
-                case RoleType.COO:
-                    return "COO";
-                case RoleType.CEO:
-                    return "CEO";
-                case RoleType.CopyPaste:
-                    return "Copy-Paste";
-                case RoleType.Developer:
-                    return "Software Developer";
-                default:
-                    return "unknown role";
-
-            }
-        }
-    }
+    
 }
