@@ -1,0 +1,12 @@
+c:\users\nikola\documents\visual studio 2015\Projects\NikolaKretenStart\NikolaKretenStart\bin\Debug\NikolaKretenStart.exe.config
+c:\users\nikola\documents\visual studio 2015\Projects\NikolaKretenStart\NikolaKretenStart\bin\Debug\NikolaKretenStart.exe
+c:\users\nikola\documents\visual studio 2015\Projects\NikolaKretenStart\NikolaKretenStart\bin\Debug\NikolaKretenStart.pdb
+c:\users\nikola\documents\visual studio 2015\Projects\NikolaKretenStart\NikolaKretenStart\obj\Debug\NikolaKretenStart.csprojResolveAssemblyReference.cache
+c:\users\nikola\documents\visual studio 2015\Projects\NikolaKretenStart\NikolaKretenStart\obj\Debug\NikolaKretenStart.exe
+c:\users\nikola\documents\visual studio 2015\Projects\NikolaKretenStart\NikolaKretenStart\obj\Debug\NikolaKretenStart.pdb
+D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\bin\Debug\NikolaKretenStart.exe.config
+D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\obj\Debug\NikolaKretenStart.exe
+D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\obj\Debug\NikolaKretenStart.pdb
+D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\obj\Debug\NikolaKretenStart.csprojResolveAssemblyReference.cache
+D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\bin\Debug\NikolaKretenStart.exe
+D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\bin\Debug\NikolaKretenStart.pdb
