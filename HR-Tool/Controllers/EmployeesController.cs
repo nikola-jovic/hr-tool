@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -22,5 +23,24 @@ namespace HR_Tool.Controllers
 
             return View(EmployeesList);
         }
+        // GET: /Dinners/Create
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+        // POST: /Dinners/Create
+
+        [HttpPost]
+        public async Task<ActionResult> Create(EmployeeModel employee)
+        {
+            EmployeesList.Add(employee);
+
+
+            return View(employee);
+        }
+
+
     }
+
 }
