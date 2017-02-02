@@ -16,16 +16,30 @@ namespace NikolaKretenStart
         Developer
     }
 
-    public class Employee : BaseEmployee
-    {        
-        public RoleType Role { get; set; }
+    public enum DepartmanType
+    {
+        JS,
+        PHP,
+        DNET,
+        Internal,
+        QA,
+        HR
+    }
 
-        public Employee(string firstName, string lastName, int age, RoleType role)
+    public class Employee : BaseEmployee
+    {
+        public DepartmanType DepartmanType { get; set; }
+        public RoleType Role { get; set; }
+        public Project Project { get; set; }
+
+        public Employee(string firstName, string lastName, int age, DepartmanType departman, RoleType role, Project project)
         {
             FirstName = firstName;
             LastName = lastName;
             Age = age;
+            DepartmanType = departman;
             Role = role;
+            Project = project;
         }
 
         //public override string ToString()
