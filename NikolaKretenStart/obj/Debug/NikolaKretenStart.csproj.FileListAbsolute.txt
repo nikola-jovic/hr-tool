@@ -9,3 +9,9 @@ D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\bin\Debug\NikolaKretenSta
 D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\obj\Debug\NikolaKretenStart.csprojResolveAssemblyReference.cache
 D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\obj\Debug\NikolaKretenStart.exe
 D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\obj\Debug\NikolaKretenStart.pdb
+C:\Users\Nikola\Desktop\ucenje\hr-tool\NikolaKretenStart\bin\Debug\NikolaKretenStart.exe.config
+C:\Users\Nikola\Desktop\ucenje\hr-tool\NikolaKretenStart\bin\Debug\NikolaKretenStart.exe
+C:\Users\Nikola\Desktop\ucenje\hr-tool\NikolaKretenStart\bin\Debug\NikolaKretenStart.pdb
+C:\Users\Nikola\Desktop\ucenje\hr-tool\NikolaKretenStart\obj\Debug\NikolaKretenStart.csprojResolveAssemblyReference.cache
+C:\Users\Nikola\Desktop\ucenje\hr-tool\NikolaKretenStart\obj\Debug\NikolaKretenStart.exe
+C:\Users\Nikola\Desktop\ucenje\hr-tool\NikolaKretenStart\obj\Debug\NikolaKretenStart.pdb

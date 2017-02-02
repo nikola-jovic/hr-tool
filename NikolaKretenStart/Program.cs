@@ -9,6 +9,14 @@ namespace NikolaKretenStart
     class Program
     {
         private static readonly IWriter _consoleWriter;
+        private static readonly IList<Project> ProjectList = new List<Project>
+        {
+            new Project { ProjectName = "Manage Apps", IsActive = true},
+            new Project { ProjectName = "Migration", IsActive = false},
+            new Project { ProjectName = "TagMan", IsActive = false},
+            new Project { ProjectName = "Flexiant", IsActive = false}
+        };
+
         static Program()
         {
             _consoleWriter = new ConsoleWriter();
@@ -47,10 +55,17 @@ namespace NikolaKretenStart
                 _consoleWriter.WriteToConsole("Enter employee's departman: ");
                 var empDepartman = Console.ReadLine();
 
+                
+                _consoleWriter.WriteToConsole(string.Format("Choose employee's project from a list below: \n 1. {0} \n 2. {1} \n 3. {2} \n 4. {3}", ProjectList[0].ProjectName, ProjectList[1].ProjectName, ProjectList[2].ProjectName, ProjectList[3].ProjectName));
+                var enteredNumber = int.Parse(Console.ReadLine());
+
+                var empSelectedProject = ProjectList[enteredNumber - 1];
+
+
                 _consoleWriter.WriteToConsole("Enter role of an employee: ");
                 var empRole = Console.ReadLine();
 
-                var employee = new Employee(empFirstName, empLastName, int.Parse(empAge), (DepartmanType)Enum.Parse(typeof(DepartmanType), empDepartman), (RoleType)Enum.Parse(typeof(RoleType), empRole));
+                var employee = new Employee(empFirstName, empLastName, int.Parse(empAge), (DepartmanType)Enum.Parse(typeof(DepartmanType), empDepartman), (RoleType)Enum.Parse(typeof(RoleType), empRole), empSelectedProject);
 
 
                 company.EmployeeList.Add(employee);
@@ -71,7 +86,7 @@ namespace NikolaKretenStart
                     {
                         foreach (var emp in company.EmployeeList)
                         {
-                            _consoleWriter.WriteToConsole(String.Format("Employee name is {0}, Last Name is {1}, age is {2}, his departman is {3} and his role is {4}", emp.FirstName, emp.LastName, emp.Age, emp.DepartmanType.GetDepartmanName(), emp.Role.GetRoleName()));
+                            _consoleWriter.WriteToConsole(string.Format("Employee name is {0}, Last Name is {1}, age is {2}, his departman is {3} and his role is {4}. He is working on a {5} project", emp.FirstName, emp.LastName, emp.Age, emp.DepartmanType.GetDepartmanName(), emp.Role.GetRoleName(), empSelectedProject.ProjectName));
 
                         }
                         break;
@@ -94,31 +109,11 @@ namespace NikolaKretenStart
                     break;
                 }
             }
-            //var employee1 = new Employee("Milan", "Stojanovic", 25, RoleType.CEO);
-            //var employee2 = new Employee("Nikola", "Jovic", 25, RoleType.COO);
-            //var employee3 = new Employee("Petar", "Jerinic", 25, RoleType.CopyPaste);
 
-            //_consoleWriter.WriteToConsole("employee 1 role is {0}", GetRoleName(employee1.Role));
         }
 
-        //private static string GetRoleName(RoleType roleType)
-        //{
-        //    switch (roleType)
-        //    {
-        //        case RoleType.CTO:
-        //            return "CTO";
-        //        case RoleType.COO:
-        //            return "COO";
-        //        case RoleType.CEO:
-        //            return "CEO";
-        //        case RoleType.CopyPaste:
-        //            return "Copy-Paste";
-        //        default:
-        //            return "unknown role";
 
-        //    }
-        //}
     }
 
-    
+
 }
