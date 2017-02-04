@@ -4,19 +4,12 @@ c:\users\nikola\documents\visual studio 2015\Projects\NikolaKretenStart\NikolaKr
 c:\users\nikola\documents\visual studio 2015\Projects\NikolaKretenStart\NikolaKretenStart\obj\Debug\NikolaKretenStart.csprojResolveAssemblyReference.cache
 c:\users\nikola\documents\visual studio 2015\Projects\NikolaKretenStart\NikolaKretenStart\obj\Debug\NikolaKretenStart.exe
 c:\users\nikola\documents\visual studio 2015\Projects\NikolaKretenStart\NikolaKretenStart\obj\Debug\NikolaKretenStart.pdb
-D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\bin\Debug\NikolaKretenStart.exe
 D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\bin\Debug\NikolaKretenStart.exe.config
-D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\obj\Debug\NikolaKretenStart.csprojResolveAssemblyReference.cache
 D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\obj\Debug\NikolaKretenStart.exe
 D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\obj\Debug\NikolaKretenStart.pdb
-C:\Users\Nikola\Desktop\ucenje\hr-tool\NikolaKretenStart\bin\Debug\NikolaKretenStart.exe.config
-C:\Users\Nikola\Desktop\ucenje\hr-tool\NikolaKretenStart\bin\Debug\NikolaKretenStart.exe
-C:\Users\Nikola\Desktop\ucenje\hr-tool\NikolaKretenStart\bin\Debug\NikolaKretenStart.pdb
-C:\Users\Nikola\Desktop\ucenje\hr-tool\NikolaKretenStart\obj\Debug\NikolaKretenStart.csprojResolveAssemblyReference.cache
-C:\Users\Nikola\Desktop\ucenje\hr-tool\NikolaKretenStart\obj\Debug\NikolaKretenStart.exe
-C:\Users\Nikola\Desktop\ucenje\hr-tool\NikolaKretenStart\obj\Debug\NikolaKretenStart.pdb
+D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\obj\Debug\NikolaKretenStart.csprojResolveAssemblyReference.cache
+D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\bin\Debug\NikolaKretenStart.exe
+D:\Projects\UCENJE\NikolaKretenStart\NikolaKretenStart\bin\Debug\NikolaKretenStart.pdb
 D:\Projects\UCENJE\NEW\hr-tool\NikolaKretenStart\bin\Debug\NikolaKretenStart.exe.config
-D:\Projects\UCENJE\NEW\hr-tool\NikolaKretenStart\bin\Debug\NikolaKretenStart.exe
-D:\Projects\UCENJE\NEW\hr-tool\NikolaKretenStart\bin\Debug\NikolaKretenStart.pdb
 D:\Projects\UCENJE\NEW\hr-tool\NikolaKretenStart\obj\Debug\NikolaKretenStart.exe
 D:\Projects\UCENJE\NEW\hr-tool\NikolaKretenStart\obj\Debug\NikolaKretenStart.pdb
