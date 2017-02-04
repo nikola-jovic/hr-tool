@@ -1,4 +1,5 @@
 ﻿using HR_Tool.Models;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,17 +12,21 @@ namespace HR_Tool.Controllers
 {
     public class EmployeesController : Controller
     {
+        protected static IMongoClient _client;
+        protected static IMongoDatabase _database;
 
-        private static readonly List<EmployeeModel> EmployeesList = new List<EmployeeModel>
+        public EmployeesController()
         {
-            new EmployeeModel { FirstName = "Nikola", LastName = "Jovic", UMCN = "1807991800063", Address = "Jastrebacka 23", DateOfBirth = DateTime.ParseExact("18/07/1991", "dd/MM/yyyy", CultureInfo.InvariantCulture) , Email = "nikola.telep@gmail.com", HomePhoneNum = "021/403-011", MobPhoneNum = "069/1807-1991"}
-        };
+            _client = new MongoClient();
+            _database = _client.GetDatabase("HRTool");
+        }
+
 
         // GET: Employees
         public ActionResult List()
         {
-
-            return View(EmployeesList);
+           var myEmployees = _database.GetCollection<EmployeeModel>("Employees").Find(_ => true).ToList();
+            return View(myEmployees);
         }
         // GET: /Dinners/Create
 
@@ -34,9 +39,9 @@ namespace HR_Tool.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(EmployeeModel employee)
         {
-            EmployeesList.Add(employee);
 
-
+            _database.GetCollection<EmployeeModel>("Employees").InsertOne(employee);
+            
             return View(employee);
         }
 
