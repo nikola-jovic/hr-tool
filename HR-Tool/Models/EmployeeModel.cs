@@ -8,9 +8,10 @@ using MongoDB.Bson;
 
 namespace HR_Tool.Models
 {
+    [BsonIgnoreExtraElements]
     public class EmployeeModel
     {
-        public ObjectId Id { get; set; }
+        public string EmployeeId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
