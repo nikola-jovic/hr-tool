@@ -40,7 +40,7 @@ namespace HR_Tool.Controllers
         [HttpPost]
         public ActionResult Create(EmployeeModel employee)
         {
-            employee.EmployeeId = Guid.NewGuid().ToString();
+            employee.PersonalDetails.EmployeeId = Guid.NewGuid().ToString();
             _database.GetCollection<EmployeeModel>("Employees").InsertOne(employee);
 
             return RedirectToAction("List");
@@ -49,7 +49,7 @@ namespace HR_Tool.Controllers
         //DELETE
         public ActionResult Delete(string id)
         {
-            var myEmployee = _database.GetCollection<EmployeeModel>("Employees").Find(x => x.EmployeeId == id).FirstOrDefault();
+            var myEmployee = _database.GetCollection<EmployeeModel>("Employees").Find(x => x.PersonalDetails.EmployeeId == id).FirstOrDefault();
             return View(myEmployee);
         }
 
@@ -57,7 +57,7 @@ namespace HR_Tool.Controllers
         [HttpPost]
         public ActionResult Delete(string id, FormCollection formcollection)
         {
-            _database.GetCollection<EmployeeModel>("Employees").DeleteOne(x => x.EmployeeId == id);
+            _database.GetCollection<EmployeeModel>("Employees").DeleteOne(x => x.PersonalDetails.EmployeeId == id);
             return RedirectToAction("List");
         }
 
@@ -66,7 +66,7 @@ namespace HR_Tool.Controllers
         public ActionResult Edit(string id)
         {
             
-            var myEmployee = _database.GetCollection<EmployeeModel>("Employees").Find(x => x.EmployeeId == id).FirstOrDefault();
+            var myEmployee = _database.GetCollection<EmployeeModel>("Employees").Find(x => x.PersonalDetails.EmployeeId == id).FirstOrDefault();
             return View(myEmployee);
         }
 
@@ -75,7 +75,7 @@ namespace HR_Tool.Controllers
         public ActionResult Edit(EmployeeModel employee)
         {
 
-            var filter = Builders<EmployeeModel>.Filter.Eq("EmployeeId", employee.EmployeeId);
+            var filter = Builders<EmployeeModel>.Filter.Eq("EmployeeId", employee.PersonalDetails.EmployeeId);
             _database.GetCollection<EmployeeModel>("Employees").FindOneAndReplace(filter, employee);
 
             return View();
@@ -84,7 +84,7 @@ namespace HR_Tool.Controllers
         //DETAILS
         public ActionResult Details(string id)
         {
-            var myEmployee = _database.GetCollection<EmployeeModel>("Employees").Find(x => x.EmployeeId == id).FirstOrDefault();
+            var myEmployee = _database.GetCollection<EmployeeModel>("Employees").Find(x => x.PersonalDetails.EmployeeId == id).FirstOrDefault();
             return View(myEmployee);
         }
 

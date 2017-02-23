@@ -167,6 +167,19 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Core\Certificate.cs" />
+    <Compile Include="Core\Conference.cs" />
+    <Compile Include="Core\ContractType.cs" />
+    <Compile Include="Core\Education.cs" />
+    <Compile Include="Core\EmployeeBenefit.cs" />
+    <Compile Include="Core\EmploymentDetails.cs" />
+    <Compile Include="Core\EmploymentType.cs" />
+    <Compile Include="Core\MaritalStatus.cs" />
+    <Compile Include="Core\PersonalDetails.cs" />
+    <Compile Include="Core\Training.cs" />
+    <Compile Include="Core\Wage.cs" />
+    <Compile Include="Core\WageBonus.cs" />
+    <Compile Include="Core\WageChange.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -215,7 +228,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Core\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
