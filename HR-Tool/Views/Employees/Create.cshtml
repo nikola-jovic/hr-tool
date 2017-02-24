@@ -8,10 +8,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>EmployeeModel</h4>
         <hr />
@@ -116,8 +116,8 @@
                 @Html.ValidationMessageFor(model => model.EmploymentDetails.AccountNumber, "", new { @class = "text-danger" })
             </div>
         </div>
-        
-        @* WAGE *@
+
+        @* START OF WAGE *@
         <div class="form-group">
             @Html.LabelFor(model => model.EmploymentDetails.Wage.CurrentWage, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -133,12 +133,26 @@
             </div>
         </div>
         @*<div class="form-group">
-            @Html.LabelFor(model => model.EmploymentDetails.Wage.AccountNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EmploymentDetails.Wage.AccountNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EmploymentDetails.Wage.AccountNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.EmploymentDetails.Wage.AccountNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EmploymentDetails.Wage.AccountNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EmploymentDetails.Wage.AccountNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+        @*@* END OF WAGE ^ *@
+        @*<table id="tblWageChangesBody">
+        <tbody></tbody>
+        </table>
+        <input type="submit" id="addWageChange" value="addWageChange" class="btn btn-default" />*@
+
+        @* START OF WAGE CHANGES *@
+
+        @*@Html.Action("~/Views/Shared/_WageChanges.cshtml", "Employees");*@
+
+        
+        @* END OF WAGE CHANGES ^ *@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

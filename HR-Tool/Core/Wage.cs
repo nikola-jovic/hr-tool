@@ -9,6 +9,8 @@ namespace HR_Tool.Core
     {
         public decimal CurrentWage { get; private set; }
         public decimal InitialWage { get; private set; }
+
+        //public WageChange WageChange { get; set; }
         public IList<WageChange> WageChanges { get; set; }
 
         public Wage()

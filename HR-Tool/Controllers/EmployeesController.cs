@@ -1,4 +1,5 @@
-﻿using HR_Tool.Models;
+﻿using HR_Tool.Core;
+using HR_Tool.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
@@ -32,7 +33,7 @@ namespace HR_Tool.Controllers
         // GET: /Dinners/Create
 
         public ActionResult Create()
-        {
+        { 
             return View();
         }
         // POST: /Dinners/Create
@@ -88,6 +89,34 @@ namespace HR_Tool.Controllers
             return View(myEmployee);
         }
 
+
+        //WAGE-CHANGES FOR PARTIAL VIEW
+
+        //[HttpPost]
+        //public ActionResult GenerateWageChanges(Wage wage)
+        //[ChildActionOnly]
+        //public ActionResult SummaryPanel_Partial(Wage wage)
+        //{
+           
+            // Check whether this request is comming with javascript, if so, we know that we are going to add contact details.
+    //        if (Request.IsAjaxRequest())
+    //        {
+    //            WageChange wageChange = new WageChange();
+    //            wageChange.DateOfChange = wage.WageChange.DateOfChange;
+    //            wageChange.IsDecrease = wage.WageChange.IsDecrease;
+    //            wageChange.ChangeAmount = wage.WageChange.ChangeAmount;
+
+    //            if (wage.WageChanges == null)
+    //            {
+    //                wage.WageChanges = new List<WageChange>();
+    //            }
+
+    //            wage.WageChanges.Add(wageChange);
+
+    //            return PartialView("_WageChanges", wage);
+    //        }
+    //        return null;
+    //    }
     }
 
 }

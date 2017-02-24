@@ -7,9 +7,9 @@ namespace HR_Tool.Core
 {
     public class WageChange
     {
-        public DateTime DateOfChange { get; private set; }
-        public bool IsDecrease { get; private set; }
-        public decimal ChangeAmount { get; private set; }
+        public DateTime DateOfChange { get; set; }
+        public bool IsDecrease { get; set; }
+        public decimal ChangeAmount { get; set; }
 
         public WageChange()
         {
