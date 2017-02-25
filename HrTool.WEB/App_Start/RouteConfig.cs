@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace HR_Tool
+namespace HrTool.WEB
 {
     public class RouteConfig
     {

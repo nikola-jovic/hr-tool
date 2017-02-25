@@ -1,48 +1,70 @@
-﻿using HR_Tool.Core;
-using HR_Tool.Models;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using HrTool.BLL;
+using HrTool.WEB.Models;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
-namespace HR_Tool.Controllers
+namespace HrTool.WEB.Controllers
 {
     public class EmployeesController : Controller
     {
-        protected static IMongoClient _client;
-        protected static IMongoDatabase _database;
+        private readonly IEmployeeService _employeeService;
 
         public EmployeesController()
         {
-            _client = new MongoClient();
-            _database = _client.GetDatabase("HRTool");
+            _employeeService = new EmployeeService();
         }
-
 
         // GET: Employees
         public ActionResult List()
         {
-           var myEmployees = _database.GetCollection<EmployeeModel>("Employees").Find(_ => true).ToList();
-            return View(myEmployees);
+            var myEmployees = _employeeService.GetAllEmployees();
+            var listOfEmployees = myEmployees.Select(x => new BasicEmployeeDetailsViewModel
+            {
+                EmployeeId = x.EmployeeId,
+                FirstName = x.PersonalDetails.FirstName,
+                LastName = x.PersonalDetails.LastName,
+                Email = x.PersonalDetails.Email,
+                MobPhoneNumber = x.PersonalDetails.MobPhoneNum,
+                Address = x.PersonalDetails.Address
+            });
+            return View(listOfEmployees);
         }
         // GET: /Dinners/Create
 
         public ActionResult Create()
-        { 
+        {
             return View();
         }
         // POST: /Dinners/Create
 
         [HttpPost]
-        public ActionResult Create(EmployeeModel employee)
+        public ActionResult Create(CreateEmployeeViewModel employee)
         {
-            employee.PersonalDetails.EmployeeId = Guid.NewGuid().ToString();
-            _database.GetCollection<EmployeeModel>("Employees").InsertOne(employee);
+
+            _employeeService.CreateEmployee(new Domain.Employee
+            {
+
+                PersonalDetails = new Domain.PersonalDetails
+                {
+                    FirstName = employee.FirstName,
+                    LastName = employee.LastName,
+                    UMCN = employee.UMCN,
+                    Address = employee.Address,
+                    DateOfBirth = employee.DateOfBirth,
+                    Email = employee.Email,
+                    HomePhoneNum = employee.HomePhoneNum,
+                    MobPhoneNum = employee.MobPhoneNum,
+                    MaritatStatus = employee.MaritatStatus
+
+                },
+                EmploymentDetails = new Domain.EmploymentDetails
+                {
+
+                    ContractType = employee.ContractType,
+                    Wage = new Domain.Wage(employee.InitialWage, employee.InitialWage, null)
+
+                }
+            });
 
             return RedirectToAction("List");
         }
@@ -50,15 +72,24 @@ namespace HR_Tool.Controllers
         //DELETE
         public ActionResult Delete(string id)
         {
-            var myEmployee = _database.GetCollection<EmployeeModel>("Employees").Find(x => x.PersonalDetails.EmployeeId == id).FirstOrDefault();
-            return View(myEmployee);
+            var myEmployee = _employeeService.GetEmployeeById(id);
+            var employeeToDelete = new BasicEmployeeDetailsViewModel
+            {
+                EmployeeId = myEmployee.EmployeeId,
+                FirstName = myEmployee.PersonalDetails.FirstName,
+                LastName = myEmployee.PersonalDetails.LastName,
+                Email = myEmployee.PersonalDetails.Email,
+                MobPhoneNumber = myEmployee.PersonalDetails.MobPhoneNum,
+                Address = myEmployee.PersonalDetails.Address
+            };
+            return View(employeeToDelete);
         }
 
         //DELETE
         [HttpPost]
         public ActionResult Delete(string id, FormCollection formcollection)
         {
-            _database.GetCollection<EmployeeModel>("Employees").DeleteOne(x => x.PersonalDetails.EmployeeId == id);
+            _employeeService.DeleteEmployee(id);
             return RedirectToAction("List");
         }
 
@@ -66,7 +97,7 @@ namespace HR_Tool.Controllers
         //EDIT
         public ActionResult Edit(string id)
         {
-            
+
             var myEmployee = _database.GetCollection<EmployeeModel>("Employees").Find(x => x.PersonalDetails.EmployeeId == id).FirstOrDefault();
             return View(myEmployee);
         }
@@ -85,38 +116,18 @@ namespace HR_Tool.Controllers
         //DETAILS
         public ActionResult Details(string id)
         {
-            var myEmployee = _database.GetCollection<EmployeeModel>("Employees").Find(x => x.PersonalDetails.EmployeeId == id).FirstOrDefault();
-            return View(myEmployee);
+            var myEmployee = _employeeService.GetEmployeeById(id);
+            var employee = new EmployeeDetailsViewModel
+            {
+                EmployeeId = myEmployee.EmployeeId,
+                PersonalDetails = myEmployee.PersonalDetails,
+                EmploymentDetails = myEmployee.EmploymentDetails
+            };
+            return View(employee);
         }
 
 
-        //WAGE-CHANGES FOR PARTIAL VIEW
-
-        //[HttpPost]
-        //public ActionResult GenerateWageChanges(Wage wage)
-        //[ChildActionOnly]
-        //public ActionResult SummaryPanel_Partial(Wage wage)
-        //{
-           
-            // Check whether this request is comming with javascript, if so, we know that we are going to add contact details.
-    //        if (Request.IsAjaxRequest())
-    //        {
-    //            WageChange wageChange = new WageChange();
-    //            wageChange.DateOfChange = wage.WageChange.DateOfChange;
-    //            wageChange.IsDecrease = wage.WageChange.IsDecrease;
-    //            wageChange.ChangeAmount = wage.WageChange.ChangeAmount;
-
-    //            if (wage.WageChanges == null)
-    //            {
-    //                wage.WageChanges = new List<WageChange>();
-    //            }
-
-    //            wage.WageChanges.Add(wageChange);
-
-    //            return PartialView("_WageChanges", wage);
-    //        }
-    //        return null;
-    //    }
+        
     }
 
 }

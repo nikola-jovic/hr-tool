@@ -1,4 +1,4 @@
-﻿@model HR_Tool.Models.EmployeeModel
+﻿@model HrTool.WEB.Models.BasicEmployeeDetailsViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -9,129 +9,55 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>EmployeeModel</h4>
+    <h4>BasicEmployeeDetailsViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.PersonalDetails.EmployeeId)
+            @Html.DisplayNameFor(model => model.EmployeeId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PersonalDetails.EmployeeId)
+            @Html.DisplayFor(model => model.EmployeeId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PersonalDetails.FirstName)
+            @Html.DisplayNameFor(model => model.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PersonalDetails.FirstName)
+            @Html.DisplayFor(model => model.FirstName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PersonalDetails.LastName)
+            @Html.DisplayNameFor(model => model.LastName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PersonalDetails.LastName)
+            @Html.DisplayFor(model => model.LastName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PersonalDetails.DateOfBirth)
+            @Html.DisplayNameFor(model => model.Email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PersonalDetails.DateOfBirth)
+            @Html.DisplayFor(model => model.Email)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PersonalDetails.UMCN)
+            @Html.DisplayNameFor(model => model.MobPhoneNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PersonalDetails.UMCN)
+            @Html.DisplayFor(model => model.MobPhoneNumber)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PersonalDetails.MobPhoneNum)
+            @Html.DisplayNameFor(model => model.Address)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PersonalDetails.MobPhoneNum)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PersonalDetails.HomePhoneNum)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PersonalDetails.HomePhoneNum)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PersonalDetails.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PersonalDetails.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PersonalDetails.Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PersonalDetails.Address)
-        </dd>
-        
-@******@
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmploymentDetails.ContractType)
-        </dt>
-        
-        <dd>
-            @Html.DisplayFor(model => model.EmploymentDetails.ContractType)
-        </dd>
-
-        <dd>
-            @Html.DisplayNameFor(model => model.EmploymentDetails.EmploymentType)
-        </dd>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmploymentDetails.EmploymentType)
-        </dd>
-
-        <dd>
-            @Html.DisplayNameFor(model => model.EmploymentDetails.RecommendedByEmployee)
-        </dd>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmploymentDetails.RecommendedByEmployee)
-        </dd>
-
-        <dd>
-            @Html.DisplayNameFor(model => model.EmploymentDetails.AccountNumber)
-        </dd>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmploymentDetails.AccountNumber)
-        </dd>
-
-        <dd>
-            @Html.DisplayNameFor(model => model.EmploymentDetails.Wage.CurrentWage)
-        </dd>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmploymentDetails.Wage.CurrentWage)
-        </dd>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmploymentDetails.Wage.InitialWage)
-        </dd>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmploymentDetails.Wage.InitialWage)
+            @Html.DisplayFor(model => model.Address)
         </dd>
 
     </dl>

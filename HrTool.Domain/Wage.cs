@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace HR_Tool.Core
+namespace HrTool.Domain
 {
     public class Wage
     {
@@ -18,10 +18,10 @@ namespace HR_Tool.Core
 
         }
 
-        public Wage(decimal currentWage, decimal initialWage, IList<WageChange> wageChanges)
+        public Wage(decimal initialWage, decimal currentWage, IList<WageChange> wageChanges)
         {
-            CurrentWage = currentWage;
             InitialWage = initialWage;
+            CurrentWage = currentWage;
             WageChanges = wageChanges;
         }
     }

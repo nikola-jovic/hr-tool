@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace HR_Tool.Controllers
+namespace HrTool.WEB.Controllers
 {
     public class HomeController : Controller
     {

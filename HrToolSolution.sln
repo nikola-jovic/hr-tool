@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HrTool.DAL", "HrTool.DAL\Hr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HrTool.BLL", "HrTool.BLL\HrTool.BLL.csproj", "{6478BE21-9DF4-4555-81CE-4AF9AE144C4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HrTool.Domain", "HrTool.Domain\HrTool.Domain.csproj", "{92CE905D-CCF6-42D9-AC9E-82919A227847}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{6478BE21-9DF4-4555-81CE-4AF9AE144C4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6478BE21-9DF4-4555-81CE-4AF9AE144C4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6478BE21-9DF4-4555-81CE-4AF9AE144C4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92CE905D-CCF6-42D9-AC9E-82919A227847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92CE905D-CCF6-42D9-AC9E-82919A227847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92CE905D-CCF6-42D9-AC9E-82919A227847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92CE905D-CCF6-42D9-AC9E-82919A227847}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

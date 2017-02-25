@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HR_Tool.Models.EmployeeModel>
+﻿@model IEnumerable<HrTool.WEB.Models.BasicEmployeeDetailsViewModel>
 
 @{
     ViewBag.Title = "List";
@@ -19,19 +19,10 @@
             @Html.DisplayNameFor(model => model.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateOfBirth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UMCN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MobPhoneNum)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HomePhoneNum)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MobPhoneNumber)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Address)
@@ -48,19 +39,10 @@
             @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DateOfBirth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UMCN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MobPhoneNum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HomePhoneNum)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MobPhoneNumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Address)
@@ -68,7 +50,7 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeId }) |
             @Html.ActionLink("Details", "Details", new { id = item.EmployeeId }) |
-            @Html.ActionLink("Delete", "Delete", new {  id = item.EmployeeId })
+            @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId })
         </td>
     </tr>
 }

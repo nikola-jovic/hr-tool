@@ -1,15 +1,14 @@
-﻿using System;
+﻿using HrTool.Domain;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace HR_Tool.Core
+namespace HrTool.WEB.Models
 {
-    public class PersonalDetails
+    public class CreateEmployeeViewModel
     {
-        //for now, everything is declared as strings, for simplicity
-        public string EmployeeId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
@@ -20,5 +19,7 @@ namespace HR_Tool.Core
         public string Email { get; set; }
         public string Address { get; set; }
         public MaritalStatus MaritatStatus { get; set; }
+        public ContractType ContractType { get; set; }
+        public decimal InitialWage { get; set; }
     }
 }

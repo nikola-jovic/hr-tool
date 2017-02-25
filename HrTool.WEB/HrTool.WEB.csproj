@@ -167,23 +167,13 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Core\Certificate.cs" />
-    <Compile Include="Core\Conference.cs" />
-    <Compile Include="Core\ContractType.cs" />
-    <Compile Include="Core\Education.cs" />
-    <Compile Include="Core\EmployeeBenefit.cs" />
-    <Compile Include="Core\EmploymentDetails.cs" />
-    <Compile Include="Core\EmploymentType.cs" />
-    <Compile Include="Core\MaritalStatus.cs" />
-    <Compile Include="Core\PersonalDetails.cs" />
-    <Compile Include="Core\Training.cs" />
-    <Compile Include="Core\Wage.cs" />
-    <Compile Include="Core\WageBonus.cs" />
-    <Compile Include="Core\WageChange.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Models\CreateEmployeeViewModel.cs" />
+    <Compile Include="Models\BasicEmployeeDetailsViewModel.cs" />
+    <Compile Include="Models\EmployeeDetailsViewModel.cs" />
+    <Compile Include="Models\UpdateEmployeeDetailsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -220,12 +210,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Employees\List.cshtml" />
+    <Content Include="Views\Shared\_WageChanges.cshtml" />
     <Content Include="Views\Employees\Create.cshtml" />
-    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\List.cshtml" />
     <Content Include="Views\Employees\Delete.cshtml" />
     <Content Include="Views\Employees\Details.cshtml" />
-    <Content Include="Views\Shared\_WageChanges.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -242,6 +231,10 @@
     <ProjectReference Include="..\HrTool.BLL\HrTool.BLL.csproj">
       <Project>{6478be21-9df4-4555-81ce-4af9ae144c4c}</Project>
       <Name>HrTool.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HrTool.Domain\HrTool.Domain.csproj">
+      <Project>{92ce905d-ccf6-42d9-ac9e-82919a227847}</Project>
+      <Name>HrTool.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
