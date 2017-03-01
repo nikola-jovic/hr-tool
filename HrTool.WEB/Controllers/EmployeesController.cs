@@ -94,24 +94,24 @@ namespace HrTool.WEB.Controllers
         }
 
 
-        //EDIT
-        public ActionResult Edit(string id)
-        {
+        ////EDIT
+        //public ActionResult Edit(string id)
+        //{
 
-            var myEmployee = _database.GetCollection<EmployeeModel>("Employees").Find(x => x.PersonalDetails.EmployeeId == id).FirstOrDefault();
-            return View(myEmployee);
-        }
+        //    var myEmployee = _database.GetCollection<EmployeeModel>("Employees").Find(x => x.PersonalDetails.EmployeeId == id).FirstOrDefault();
+        //    return View(myEmployee);
+        //}
 
-        //EDIT
-        [HttpPost]
-        public ActionResult Edit(EmployeeModel employee)
-        {
+        ////EDIT
+        //[HttpPost]
+        //public ActionResult Edit(EmployeeModel employee)
+        //{
 
-            var filter = Builders<EmployeeModel>.Filter.Eq("EmployeeId", employee.PersonalDetails.EmployeeId);
-            _database.GetCollection<EmployeeModel>("Employees").FindOneAndReplace(filter, employee);
+        //    var filter = Builders<EmployeeModel>.Filter.Eq("EmployeeId", employee.PersonalDetails.EmployeeId);
+        //    _database.GetCollection<EmployeeModel>("Employees").FindOneAndReplace(filter, employee);
 
-            return View();
-        }
+        //    return View();
+        //}
 
         //DETAILS
         public ActionResult Details(string id)
