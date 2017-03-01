@@ -94,24 +94,58 @@ namespace HrTool.WEB.Controllers
         }
 
 
-        ////EDIT
-        //public ActionResult Edit(string id)
-        //{
+        //EDIT
+        public ActionResult EditPersonalDetails(string id)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(id);
+            var personalDetailsModel = new UpdatePersonalDetailsViewModel
+            {
+                EmployeeId = myEmployee.EmployeeId,
+                PersonalDetails = myEmployee.PersonalDetails
+            };
+            return View(personalDetailsModel);
+        }
 
-        //    var myEmployee = _database.GetCollection<EmployeeModel>("Employees").Find(x => x.PersonalDetails.EmployeeId == id).FirstOrDefault();
-        //    return View(myEmployee);
-        //}
+        //EDIT EditPersonalDetails
+        [HttpPost]
+        public ActionResult EditPersonalDetails(UpdatePersonalDetailsViewModel employee)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(employee.EmployeeId);
+            myEmployee.PersonalDetails = employee.PersonalDetails;
+            _employeeService.UpdateEmployee(myEmployee);
 
-        ////EDIT
-        //[HttpPost]
-        //public ActionResult Edit(EmployeeModel employee)
-        //{
+            return RedirectToAction("Details", new { id = employee.EmployeeId });
+        }
 
-        //    var filter = Builders<EmployeeModel>.Filter.Eq("EmployeeId", employee.PersonalDetails.EmployeeId);
-        //    _database.GetCollection<EmployeeModel>("Employees").FindOneAndReplace(filter, employee);
+        //EDIT EditBasicEmploymentDetails
+        public ActionResult EditBasicEmploymentDetails(string id)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(id);
+            var basicEmploymentDetailsModel = new UpdateBasicEmploymentDetailsViewModel
+            {
+                EmployeeId = myEmployee.EmployeeId,
+                ContractType = myEmployee.EmploymentDetails.ContractType,
+                EmploymentType = myEmployee.EmploymentDetails.EmploymentType,
+                RecommendedByEmployee = myEmployee.EmploymentDetails.RecommendedByEmployee,
+                AccountNumber = myEmployee.EmploymentDetails.AccountNumber
+            };
+            return View(basicEmploymentDetailsModel);
+        }
 
-        //    return View();
-        //}
+        //EDIT EditBasicEmploymentDetails
+        [HttpPost]
+        public ActionResult EditBasicEmploymentDetails(UpdateBasicEmploymentDetailsViewModel employee)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(employee.EmployeeId);
+            myEmployee.EmploymentDetails.ContractType = employee.ContractType;
+            myEmployee.EmploymentDetails.EmploymentType = employee.EmploymentType;
+            myEmployee.EmploymentDetails.RecommendedByEmployee = employee.RecommendedByEmployee;
+            myEmployee.EmploymentDetails.AccountNumber = employee.AccountNumber;
+
+            _employeeService.UpdateEmployee(myEmployee);
+
+            return RedirectToAction("Details", new { id = employee.EmployeeId });
+        }
 
         //DETAILS
         public ActionResult Details(string id)
@@ -127,7 +161,7 @@ namespace HrTool.WEB.Controllers
         }
 
 
-        
+
     }
 
 }

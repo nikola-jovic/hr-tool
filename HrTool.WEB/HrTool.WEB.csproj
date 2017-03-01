@@ -173,7 +173,8 @@
     <Compile Include="Models\CreateEmployeeViewModel.cs" />
     <Compile Include="Models\BasicEmployeeDetailsViewModel.cs" />
     <Compile Include="Models\EmployeeDetailsViewModel.cs" />
-    <Compile Include="Models\UpdateEmployeeDetailsViewModel.cs" />
+    <Compile Include="Models\UpdateBasicEmploymentDetailsViewModel.cs" />
+    <Compile Include="Models\UpdatePersonalDetailsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +216,8 @@
     <Content Include="Views\Employees\List.cshtml" />
     <Content Include="Views\Employees\Delete.cshtml" />
     <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\EditPersonalDetails.cshtml" />
+    <Content Include="Views\Employees\EditBasicEmploymentDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

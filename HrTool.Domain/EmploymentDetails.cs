@@ -7,6 +7,16 @@ namespace HrTool.Domain
 {
     public class EmploymentDetails
     {
+        public EmploymentDetails()
+        {
+            Benefits = new List<EmployeeBenefit>();
+            Trainings = new List<Training>();
+            Conferences = new List<Conference>();
+            Certificates = new List<Certificate>();
+            Education = new List<Education>();
+            WageBonuses = new List<WageBonus>();
+        }
+
         public ContractType ContractType { get; set; }
         public EmploymentType EmploymentType { get; set; }
         public string RecommendedByEmployee { get; set; } /* why */

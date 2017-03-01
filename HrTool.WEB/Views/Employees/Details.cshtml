@@ -8,9 +8,13 @@
 <h2>Details</h2>
 
 <div>
-    <h4>EmployeeDetailsViewModel</h4>
     <hr />
+
+    <h4>Personal Details:</h4>
+    
     <dl class="dl-horizontal">
+
+
         <dt>
             @Html.DisplayNameFor(model => model.EmployeeId)
         </dt>
@@ -18,10 +22,7 @@
         <dd>
             @Html.DisplayFor(model => model.EmployeeId)
         </dd>
-
-
-        @*PERSONAL DETAILS*@
-
+        
         <dt>
             @Html.DisplayNameFor(model => model.PersonalDetails.FirstName)
         </dt>
@@ -93,8 +94,17 @@
         <dd>
             @Html.DisplayFor(model => model.PersonalDetails.MaritatStatus)
         </dd>
+        </dl>
 
-        @*EMPLOYMENT DETAILS*@
+    <p>
+        @Html.ActionLink("Edit", "EditBasicEmploymentDetails", new { id = Model.EmployeeId })
+
+    </p>
+    <hr />
+    <h4>Employment Details:</h4>
+   
+    <dl class="dl-horizontal">
+
         <dt>
             @Html.DisplayNameFor(model => model.EmploymentDetails.ContractType)
         </dt>
@@ -127,6 +137,16 @@
             @Html.DisplayFor(model => model.EmploymentDetails.AccountNumber)
         </dd>
 
+    </dl>
+
+    <p>
+        @Html.ActionLink("Edit", "EditBasicEmploymentDetails", new { id = Model.EmployeeId })
+
+    </p>
+
+    <h5>Wage:</h5>
+  
+    <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.EmploymentDetails.Wage.InitialWage)
         </dt>
@@ -143,13 +163,94 @@
             @Html.DisplayFor(model => model.EmploymentDetails.Wage.CurrentWage)
         </dd>
 
-        @* WAGE *@
+    </dl>
 
+    <h5>Benefits:</h5>
+  
+    <dl class="dl-horizontal">
+        @if (Model.EmploymentDetails.Benefits == null || Model.EmploymentDetails.Benefits.Count == 0)
+        {
+            <dd>Nothing to show...</dd>
+        }
+        else
+        {
+                
+        }
+    </dl>
 
+    <h5>Trainings:</h5>
+  
+    <dl class="dl-horizontal">
+
+        @if (Model.EmploymentDetails.Trainings == null || Model.EmploymentDetails.Trainings.Count == 0)
+        {
+            <dd>Nothing to show...</dd>
+        }
+        else
+        {
+
+        }
+
+    </dl>
+
+    <h5>Conferences:</h5>
+   
+    <dl class="dl-horizontal">
+
+        @if (Model.EmploymentDetails.Conferences == null || Model.EmploymentDetails.Conferences.Count == 0)
+        {
+            <dd>Nothing to show...</dd>
+        }
+        else
+        {
+
+        }
+
+    </dl>
+
+    <h5>Certificates:</h5>
+    
+    <dl class="dl-horizontal">
+
+        @if (Model.EmploymentDetails.Certificates == null || Model.EmploymentDetails.Certificates.Count == 0)
+        {
+            <dd>Nothing to show...</dd>
+        }
+        else
+        {
+
+        }
+
+    </dl>
+
+    <h5>Education:</h5>
+    
+    <dl class="dl-horizontal">
+
+        @if (Model.EmploymentDetails.Education == null || Model.EmploymentDetails.Education.Count == 0)
+        {
+            <dd>Nothing to show...</dd>
+        }
+        else
+        {
+
+        }
+
+    </dl>
+
+    <h5>WageBonuses:</h5>
+    
+    <dl class="dl-horizontal">
+
+        @if (Model.EmploymentDetails.WageBonuses == null || Model.EmploymentDetails.WageBonuses.Count == 0)
+        {
+            <dd>Nothing to show...</dd>
+        }
+        else
+        {
+
+        }
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "list")
-</p>
+
