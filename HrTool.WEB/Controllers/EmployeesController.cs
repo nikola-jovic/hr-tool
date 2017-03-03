@@ -1,5 +1,7 @@
 ﻿using HrTool.BLL;
 using HrTool.WEB.Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -94,7 +96,7 @@ namespace HrTool.WEB.Controllers
         }
 
 
-        //EDIT
+        //EDIT EditPersonalDetails
         public ActionResult EditPersonalDetails(string id)
         {
             var myEmployee = _employeeService.GetEmployeeById(id);
@@ -146,6 +148,53 @@ namespace HrTool.WEB.Controllers
 
             return RedirectToAction("Details", new { id = employee.EmployeeId });
         }
+
+        //**************************************************************************************************
+
+        //EDIT EditWageDetails
+        public ActionResult EditWageDetails(string id)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(id);
+            //var wageChanges = myEmployee.EmploymentDetails.Wage.WageChanges
+            //    .Select(x => new UpdateWageChangeDetailsModelView()
+            //    {
+            //        DateOfChange = x.DateOfChange,
+            //        ChangeAmount = x.ChangeAmount,
+            //        IsDecrease = x.IsDecrease
+            //    })
+            //    .ToList();
+
+            var employeeWage = new UpdateWageDetailsModelView
+            {
+                EmployeeId = myEmployee.EmployeeId,
+                InitialWage = myEmployee.EmploymentDetails.Wage.InitialWage,
+                CurrentWage = myEmployee.EmploymentDetails.Wage.CurrentWage
+            };
+
+            return View(employeeWage);
+        }
+
+        //EDIT EditWageDetails
+        [HttpPost]
+        public ActionResult EditWageDetails(UpdateWageDetailsModelView employeeWage)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(employeeWage.EmployeeId);
+            myEmployee.EmploymentDetails.Wage.InitialWage = employeeWage.InitialWage;
+            myEmployee.EmploymentDetails.Wage.CurrentWage = employeeWage.CurrentWage;
+
+            var resuilt = myEmployee.EmploymentDetails.Wage.CurrentWage - myEmployee.EmploymentDetails.Wage.InitialWage;
+            if (resuilt != 0)
+            {
+
+            };
+
+
+            _employeeService.UpdateEmployee(myEmployee);
+
+            return RedirectToAction("Details", new { id = employeeWage.EmployeeId });
+        }
+
+        //**************************************************************************************************
 
         //DETAILS
         public ActionResult Details(string id)

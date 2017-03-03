@@ -7,8 +7,8 @@ namespace HrTool.Domain
 {
     public class Wage
     {
-        public decimal CurrentWage { get; private set; }
-        public decimal InitialWage { get; private set; }
+        public decimal CurrentWage { get; set; }
+        public decimal InitialWage { get; set; }
 
         //public WageChange WageChange { get; set; }
         public IList<WageChange> WageChanges { get; set; }
