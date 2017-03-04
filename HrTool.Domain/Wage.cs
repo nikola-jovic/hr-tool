@@ -15,7 +15,7 @@ namespace HrTool.Domain
 
         public Wage()
         {
-
+            WageChanges = new List<WageChange>();
         }
 
         public Wage(decimal initialWage, decimal currentWage, IList<WageChange> wageChanges)

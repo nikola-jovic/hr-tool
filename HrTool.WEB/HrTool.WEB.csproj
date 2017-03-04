@@ -170,13 +170,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CreateBenefitViewModel.cs" />
+    <Compile Include="Models\CreateCertificateViewModel.cs" />
+    <Compile Include="Models\CreateConferenceViewModel.cs" />
     <Compile Include="Models\CreateEmployeeViewModel.cs" />
     <Compile Include="Models\BasicEmployeeDetailsViewModel.cs" />
+    <Compile Include="Models\CreateTrainingViewModel.cs" />
+    <Compile Include="Models\CreateWageBonusViewModel.cs" />
     <Compile Include="Models\EmployeeDetailsViewModel.cs" />
     <Compile Include="Models\UpdateBasicEmploymentDetailsViewModel.cs" />
     <Compile Include="Models\UpdatePersonalDetailsViewModel.cs" />
-    <Compile Include="Models\UpdateWageChangeDetailsModelView.cs" />
-    <Compile Include="Models\UpdateWageDetailsModelView.cs" />
+    <Compile Include="Models\UpdateWageDetailsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +225,10 @@
     <Content Include="Views\Employees\EditPersonalDetails.cshtml" />
     <Content Include="Views\Employees\EditBasicEmploymentDetails.cshtml" />
     <Content Include="Views\Employees\EditWageDetails.cshtml" />
+    <Content Include="Views\Employees\CreateWageBonus.cshtml" />
+    <Content Include="Views\Employees\CreateTraining.cshtml" />
+    <Content Include="Views\Employees\CreateConference.cshtml" />
+    <Content Include="Views\Employees\CreateCertificate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

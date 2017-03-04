@@ -6,12 +6,12 @@ using System.Web;
 
 namespace HrTool.WEB.Models
 {
-    public class UpdateWageDetailsModelView
+    public class UpdateWageDetailsViewModel
     {
         public string EmployeeId { get; set; }
         public decimal CurrentWage { get; set; }
         public decimal InitialWage { get; set; }
-        public IList<UpdateWageChangeDetailsModelView> WageChanges { get; set; }
+        public IList<WageChange> WageChanges { get; set; }
 
     }
 }

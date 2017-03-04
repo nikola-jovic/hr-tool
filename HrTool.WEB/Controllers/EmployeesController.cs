@@ -71,6 +71,124 @@ namespace HrTool.WEB.Controllers
             return RedirectToAction("List");
         }
 
+        // GET: /Dinners/Create
+        // CREATE WAGE BONUS
+        public ActionResult CreateWageBonus(string id)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(id);
+            var model = new CreateWageBonusViewModel
+            {
+                EmployeeId = myEmployee.EmployeeId
+            };
+            return View(model);
+        }
+        // POST: /Dinners/Create
+        // CREATE WAGE BONUS
+        [HttpPost]
+        public ActionResult CreateWageBonus(CreateWageBonusViewModel wageBonus)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(wageBonus.EmployeeId);
+            myEmployee.EmploymentDetails.WageBonuses.Add(new Domain.WageBonus
+            {
+                BonusAmount = wageBonus.BonusAmount,
+                DateOfBonus = wageBonus.DateOfBonus,
+                Note = wageBonus.Note
+            });
+            _employeeService.UpdateEmployee(myEmployee);
+
+            return RedirectToAction("Details", new { id = myEmployee.EmployeeId });
+        }
+
+        // GET: /Dinners/Create
+        // CREATE TRAINING
+        public ActionResult CreateTraining(string id)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(id);
+            var model = new CreateTrainingViewModel
+            {
+                EmployeeId = myEmployee.EmployeeId
+            };
+            return View(model);
+        }
+        // POST: /Dinners/Create
+        // CREATE TRAINING
+        [HttpPost]
+        public ActionResult CreateTraining(CreateTrainingViewModel training)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(training.EmployeeId);
+            myEmployee.EmploymentDetails.Trainings.Add(new Domain.Training
+            {
+                Name = training.Name,
+                Started = training.Started,
+                Completed = training.Completed,
+                Description = training.Description
+            });
+            _employeeService.UpdateEmployee(myEmployee);
+
+            return RedirectToAction("Details", new { id = myEmployee.EmployeeId });
+        }
+
+        // GET: /Dinners/Create
+        // CREATE CONFERENCE
+        public ActionResult CreateConference(string id)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(id);
+            var model = new CreateConferenceViewModel
+            {
+                EmployeeId = myEmployee.EmployeeId
+            };
+            return View(model);
+        }
+        // POST: /Dinners/Create
+        // CREATE CONFERENCE
+        [HttpPost]
+        public ActionResult CreateConference(CreateConferenceViewModel conference)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(conference.EmployeeId);
+            myEmployee.EmploymentDetails.Conferences.Add(new Domain.Conference
+            {
+                Name = conference.Name,
+                Started = conference.Started,
+                Completed = conference.Completed,
+                Description = conference.Description,
+                Location = conference.Location
+            });
+            _employeeService.UpdateEmployee(myEmployee);
+
+            return RedirectToAction("Details", new { id = myEmployee.EmployeeId });
+        }
+
+        // GET: /Dinners/Create
+        // CREATE CERTIFICATE
+        public ActionResult CreateCertificate(string id)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(id);
+            var model = new CreateCertificateViewModel
+            {
+                EmployeeId = myEmployee.EmployeeId
+            };
+            return View(model);
+        }
+        // POST: /Dinners/Create
+        // CREATE CERTIFICATE
+        [HttpPost]
+        public ActionResult CreateCertificate(CreateCertificateViewModel certificate)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(certificate.EmployeeId);
+            myEmployee.EmploymentDetails.Certificates.Add(new Domain.Certificate
+            {
+                Name = certificate.Name,
+                URL = certificate.URL,
+                IsPermanent = certificate.IsPermanent,
+                ValidFromDate = certificate.ValidFromDate,
+                ValidToDate = certificate.ValidToDate,
+                Description = certificate.Description
+            });
+            _employeeService.UpdateEmployee(myEmployee);
+
+            return RedirectToAction("Details", new { id = myEmployee.EmployeeId });
+        }
+
         //DELETE
         public ActionResult Delete(string id)
         {
@@ -155,16 +273,9 @@ namespace HrTool.WEB.Controllers
         public ActionResult EditWageDetails(string id)
         {
             var myEmployee = _employeeService.GetEmployeeById(id);
-            //var wageChanges = myEmployee.EmploymentDetails.Wage.WageChanges
-            //    .Select(x => new UpdateWageChangeDetailsModelView()
-            //    {
-            //        DateOfChange = x.DateOfChange,
-            //        ChangeAmount = x.ChangeAmount,
-            //        IsDecrease = x.IsDecrease
-            //    })
-            //    .ToList();
+            
 
-            var employeeWage = new UpdateWageDetailsModelView
+            var employeeWage = new UpdateWageDetailsViewModel
             {
                 EmployeeId = myEmployee.EmployeeId,
                 InitialWage = myEmployee.EmploymentDetails.Wage.InitialWage,
@@ -176,23 +287,43 @@ namespace HrTool.WEB.Controllers
 
         //EDIT EditWageDetails
         [HttpPost]
-        public ActionResult EditWageDetails(UpdateWageDetailsModelView employeeWage)
+        public ActionResult EditWageDetails(UpdateWageDetailsViewModel employeeWage)
         {
             var myEmployee = _employeeService.GetEmployeeById(employeeWage.EmployeeId);
+            if (myEmployee.EmploymentDetails.Wage.WageChanges == null)
+            {
+                myEmployee.EmploymentDetails.Wage.WageChanges = new List<Domain.WageChange>();
+            }
+            var result = employeeWage.CurrentWage - myEmployee.EmploymentDetails.Wage.CurrentWage;
+
+            if (result > 0)
+            {
+                myEmployee.EmploymentDetails.Wage.WageChanges.Add(new Domain.WageChange
+                {
+                    ChangeAmount = result,
+                    DateOfChange = DateTime.Now,
+                    IsDecrease = false
+                });
+            }
+            else if (result < 0)
+            {
+                myEmployee.EmploymentDetails.Wage.WageChanges.Add(new Domain.WageChange
+                {
+                    ChangeAmount = Math.Abs(result),
+                    DateOfChange = DateTime.Now,
+                    IsDecrease = true
+                });
+            }
+
             myEmployee.EmploymentDetails.Wage.InitialWage = employeeWage.InitialWage;
             myEmployee.EmploymentDetails.Wage.CurrentWage = employeeWage.CurrentWage;
-
-            var resuilt = myEmployee.EmploymentDetails.Wage.CurrentWage - myEmployee.EmploymentDetails.Wage.InitialWage;
-            if (resuilt != 0)
-            {
-
-            };
-
 
             _employeeService.UpdateEmployee(myEmployee);
 
             return RedirectToAction("Details", new { id = employeeWage.EmployeeId });
         }
+
+
 
         //**************************************************************************************************
 

@@ -11,7 +11,7 @@
     <hr />
 
     <h4>Personal Details:</h4>
-    
+
     <dl class="dl-horizontal">
 
 
@@ -22,7 +22,7 @@
         <dd>
             @Html.DisplayFor(model => model.EmployeeId)
         </dd>
-        
+
         <dt>
             @Html.DisplayNameFor(model => model.PersonalDetails.FirstName)
         </dt>
@@ -94,7 +94,7 @@
         <dd>
             @Html.DisplayFor(model => model.PersonalDetails.MaritatStatus)
         </dd>
-        </dl>
+    </dl>
 
     <p>
         @Html.ActionLink("Edit", "EditBasicEmploymentDetails", new { id = Model.EmployeeId })
@@ -102,7 +102,7 @@
     </p>
     <hr />
     <h4>Employment Details:</h4>
-   
+
     <dl class="dl-horizontal">
 
         <dt>
@@ -145,7 +145,7 @@
     </p>
 
     <h5>Wage:</h5>
-  
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.EmploymentDetails.Wage.InitialWage)
@@ -163,6 +163,69 @@
             @Html.DisplayFor(model => model.EmploymentDetails.Wage.CurrentWage)
         </dd>
 
+        <dd>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Change Amount</th>
+                        <th>Is Decreased</th>
+                        <th>Date Of Change</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.EmploymentDetails.Wage.WageChanges)
+                    {
+                        <tr>
+                            <td>@item.ChangeAmount</td>
+                            <td>@item.IsDecrease</td>
+                            <td>@item.DateOfChange</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </dd>
+
+    </dl>
+
+    <h5>WageBonuses:</h5>
+    @Html.ActionLink("Create", "CreateWageBonus", new { id = Model.EmployeeId })
+    <dl class="dl-horizontal">
+
+        @if (Model.EmploymentDetails.WageBonuses == null || Model.EmploymentDetails.WageBonuses.Count == 0)
+        {
+            <dd>Nothing to show...</dd>
+        }
+        else
+        {
+            <dd>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Bonus Amount</th>
+                            <th>Date of Bonus</th>
+                            <th>Note</th>
+                            @*<th>Actions</th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.EmploymentDetails.WageBonuses)
+                        {
+                            <tr>
+                                <td>@item.BonusAmount</td>
+                                <td>@item.DateOfBonus</td>
+                                <td>@item.Note</td>
+                                @*<td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }) |
+                                    @Html.ActionLink("Delete", "Delete", new { Model.EmployeeId })
+                                </td>*@
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </dd>
+        }
+
     </dl>
     <p>
         @Html.ActionLink("Edit", "EditWageDetails", new { id = Model.EmployeeId })
@@ -170,21 +233,10 @@
     </p>
 
 
-    <h5>Benefits:</h5>
-  
-    <dl class="dl-horizontal">
-        @if (Model.EmploymentDetails.Benefits == null || Model.EmploymentDetails.Benefits.Count == 0)
-        {
-            <dd>Nothing to show...</dd>
-        }
-        else
-        {
-                
-        }
-    </dl>
+    
 
     <h5>Trainings:</h5>
-  
+    @Html.ActionLink("Create", "CreateTraining", new { id = Model.EmployeeId })
     <dl class="dl-horizontal">
 
         @if (Model.EmploymentDetails.Trainings == null || Model.EmploymentDetails.Trainings.Count == 0)
@@ -193,13 +245,39 @@
         }
         else
         {
-
+            <dd>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Started</th>
+                            <th>Completed</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.EmploymentDetails.Trainings)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Started</td>
+                                <td>@item.Completed</td>
+                                <td>@item.Description</td>
+                                @*<td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }) |
+                                        @Html.ActionLink("Delete", "Delete", new { Model.EmployeeId })
+                                    </td>*@
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </dd>
         }
 
     </dl>
 
     <h5>Conferences:</h5>
-   
+    @Html.ActionLink("Create", "CreateConference", new { id = Model.EmployeeId })
     <dl class="dl-horizontal">
 
         @if (Model.EmploymentDetails.Conferences == null || Model.EmploymentDetails.Conferences.Count == 0)
@@ -208,13 +286,41 @@
         }
         else
         {
-
+            <dd>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Started</th>
+                            <th>Completed</th>
+                            <th>Description</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.EmploymentDetails.Conferences)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Started</td>
+                                <td>@item.Completed</td>
+                                <td>@item.Description</td>
+                                <td>@item.Location</td>
+                                @*<td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }) |
+                                        @Html.ActionLink("Delete", "Delete", new { Model.EmployeeId })
+                                    </td>*@
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </dd>
         }
 
     </dl>
 
     <h5>Certificates:</h5>
-    
+    @Html.ActionLink("Create", "CreateCertificate", new { id = Model.EmployeeId })
     <dl class="dl-horizontal">
 
         @if (Model.EmploymentDetails.Certificates == null || Model.EmploymentDetails.Certificates.Count == 0)
@@ -223,13 +329,43 @@
         }
         else
         {
-
+            <dd>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>URL</th>
+                            <th>Is Permanent</th>
+                            <th>Valid From</th>
+                            <th>Valid To</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.EmploymentDetails.Certificates)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.URL</td>
+                                <td>@item.IsPermanent</td>
+                                <td>@item.ValidFromDate</td>
+                                <td>@item.ValidToDate</td>
+                                <td>@item.Description</td>
+                                @*<td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }) |
+                                        @Html.ActionLink("Delete", "Delete", new { Model.EmployeeId })
+                                    </td>*@
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </dd>
         }
 
     </dl>
 
     <h5>Education:</h5>
-    
+
     <dl class="dl-horizontal">
 
         @if (Model.EmploymentDetails.Education == null || Model.EmploymentDetails.Education.Count == 0)
@@ -243,11 +379,10 @@
 
     </dl>
 
-    <h5>WageBonuses:</h5>
-    
-    <dl class="dl-horizontal">
+    <h5>Benefits:</h5>
 
-        @if (Model.EmploymentDetails.WageBonuses == null || Model.EmploymentDetails.WageBonuses.Count == 0)
+    <dl class="dl-horizontal">
+        @if (Model.EmploymentDetails.Benefits == null || Model.EmploymentDetails.Benefits.Count == 0)
         {
             <dd>Nothing to show...</dd>
         }
@@ -255,7 +390,8 @@
         {
 
         }
-
     </dl>
+
+
 </div>
 
