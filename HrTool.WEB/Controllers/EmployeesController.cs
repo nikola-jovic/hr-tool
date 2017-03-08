@@ -64,7 +64,7 @@ namespace HrTool.WEB.Controllers
                 {
 
                     ContractType = employee.ContractType,
-                    Wage = new Domain.Wage(employee.InitialWage, employee.InitialWage, null)
+                    Wage = new Domain.Wage(employee.InitialWage, employee.InitialWage, new List<Domain.WageChange>())
 
                 }
             });
@@ -211,8 +211,8 @@ namespace HrTool.WEB.Controllers
             {
                 Name = education.Name,
                 Description = education.Description,
-                FromDate = education.FromDate,
-                ToDate = education.ToDate
+                FromDate = education.FromDate.ToUniversalTime(),
+                ToDate = education.ToDate.ToUniversalTime()
             });
             _employeeService.UpdateEmployee(myEmployee);
 

@@ -395,8 +395,8 @@
                             <tr>
                                 <td>@item.Name</td>
                                 <td>@item.Description</td>
-                                <td>@item.FromDate</td>
-                                <td>@item.ToDate</td>
+                                <td>@item.FromDate.ToLocalTime()</td>
+                                <td>@item.ToDate.ToLocalTime()</td>
                                 @*<td>
                                         @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }) |
                                         @Html.ActionLink("Delete", "Delete", new { Model.EmployeeId })
