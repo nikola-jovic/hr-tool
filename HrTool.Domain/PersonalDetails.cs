@@ -11,7 +11,7 @@ namespace HrTool.Domain
         //for now, everything is declared as strings, for simplicity
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
         public string UMCN { get; set; }
         public string MobPhoneNum { get; set; }

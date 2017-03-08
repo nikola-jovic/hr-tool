@@ -31,13 +31,14 @@ namespace HrTool.WEB.Controllers
             });
             return View(listOfEmployees);
         }
-        // GET: /Dinners/Create
-
+        // GET:
+        // CREATE EMPLOYEE
         public ActionResult Create()
         {
             return View();
         }
-        // POST: /Dinners/Create
+        // POST:
+        // CREATE EMPLOYEE
 
         [HttpPost]
         public ActionResult Create(CreateEmployeeViewModel employee)
@@ -71,7 +72,7 @@ namespace HrTool.WEB.Controllers
             return RedirectToAction("List");
         }
 
-        // GET: /Dinners/Create
+        // GET:
         // CREATE WAGE BONUS
         public ActionResult CreateWageBonus(string id)
         {
@@ -82,7 +83,7 @@ namespace HrTool.WEB.Controllers
             };
             return View(model);
         }
-        // POST: /Dinners/Create
+        // POST:
         // CREATE WAGE BONUS
         [HttpPost]
         public ActionResult CreateWageBonus(CreateWageBonusViewModel wageBonus)
@@ -99,7 +100,7 @@ namespace HrTool.WEB.Controllers
             return RedirectToAction("Details", new { id = myEmployee.EmployeeId });
         }
 
-        // GET: /Dinners/Create
+        // GET:
         // CREATE TRAINING
         public ActionResult CreateTraining(string id)
         {
@@ -110,7 +111,7 @@ namespace HrTool.WEB.Controllers
             };
             return View(model);
         }
-        // POST: /Dinners/Create
+        // POST:
         // CREATE TRAINING
         [HttpPost]
         public ActionResult CreateTraining(CreateTrainingViewModel training)
@@ -128,7 +129,7 @@ namespace HrTool.WEB.Controllers
             return RedirectToAction("Details", new { id = myEmployee.EmployeeId });
         }
 
-        // GET: /Dinners/Create
+        // GET:
         // CREATE CONFERENCE
         public ActionResult CreateConference(string id)
         {
@@ -139,7 +140,7 @@ namespace HrTool.WEB.Controllers
             };
             return View(model);
         }
-        // POST: /Dinners/Create
+        // POST:
         // CREATE CONFERENCE
         [HttpPost]
         public ActionResult CreateConference(CreateConferenceViewModel conference)
@@ -158,7 +159,7 @@ namespace HrTool.WEB.Controllers
             return RedirectToAction("Details", new { id = myEmployee.EmployeeId });
         }
 
-        // GET: /Dinners/Create
+        // GET:
         // CREATE CERTIFICATE
         public ActionResult CreateCertificate(string id)
         {
@@ -169,7 +170,7 @@ namespace HrTool.WEB.Controllers
             };
             return View(model);
         }
-        // POST: /Dinners/Create
+        // POST:
         // CREATE CERTIFICATE
         [HttpPost]
         public ActionResult CreateCertificate(CreateCertificateViewModel certificate)
@@ -188,6 +189,36 @@ namespace HrTool.WEB.Controllers
 
             return RedirectToAction("Details", new { id = myEmployee.EmployeeId });
         }
+
+        // GET:
+        // CREATE EDUCATION
+        public ActionResult CreateEducation(string id)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(id);
+            var model = new CreateEducationViewModel
+            {
+                EmployeeId = myEmployee.EmployeeId
+            };
+            return View(model);
+        }
+        // POST:
+        // CREATE EDUCATION
+        [HttpPost]
+        public ActionResult CreateEducation(CreateEducationViewModel education)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(education.EmployeeId);
+            myEmployee.EmploymentDetails.Education.Add(new Domain.Education
+            {
+                Name = education.Name,
+                Description = education.Description,
+                FromDate = education.FromDate,
+                ToDate = education.ToDate
+            });
+            _employeeService.UpdateEmployee(myEmployee);
+
+            return RedirectToAction("Details", new { id = myEmployee.EmployeeId });
+        }
+
 
         //DELETE
         public ActionResult Delete(string id)
@@ -273,7 +304,7 @@ namespace HrTool.WEB.Controllers
         public ActionResult EditWageDetails(string id)
         {
             var myEmployee = _employeeService.GetEmployeeById(id);
-            
+
 
             var employeeWage = new UpdateWageDetailsViewModel
             {

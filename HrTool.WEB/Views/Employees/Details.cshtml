@@ -97,7 +97,7 @@
     </dl>
 
     <p>
-        @Html.ActionLink("Edit", "EditBasicEmploymentDetails", new { id = Model.EmployeeId })
+        @Html.ActionLink("Edit", "EditPersonalDetails", new { id = Model.EmployeeId })
 
     </p>
     <hr />
@@ -187,6 +187,11 @@
         </dd>
 
     </dl>
+    <p>
+        @Html.ActionLink("Edit", "EditWageDetails", new { id = Model.EmployeeId })
+
+    </p>
+
 
     <h5>WageBonuses:</h5>
     @Html.ActionLink("Create", "CreateWageBonus", new { id = Model.EmployeeId })
@@ -227,10 +232,10 @@
         }
 
     </dl>
-    <p>
+    @*<p>
         @Html.ActionLink("Edit", "EditWageDetails", new { id = Model.EmployeeId })
 
-    </p>
+    </p>*@
 
 
     
@@ -365,7 +370,7 @@
     </dl>
 
     <h5>Education:</h5>
-
+    @Html.ActionLink("Create", "CreateEducation", new { id = Model.EmployeeId })
     <dl class="dl-horizontal">
 
         @if (Model.EmploymentDetails.Education == null || Model.EmploymentDetails.Education.Count == 0)
@@ -374,7 +379,33 @@
         }
         else
         {
-
+            <dd>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>FromDate</th>
+                            <th>ToDate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.EmploymentDetails.Education)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Description</td>
+                                <td>@item.FromDate</td>
+                                <td>@item.ToDate</td>
+                                @*<td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }) |
+                                        @Html.ActionLink("Delete", "Delete", new { Model.EmployeeId })
+                                    </td>*@
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </dd>
         }
 
     </dl>
