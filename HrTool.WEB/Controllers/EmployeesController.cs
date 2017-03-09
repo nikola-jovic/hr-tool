@@ -54,6 +54,7 @@ namespace HrTool.WEB.Controllers
                     UMCN = employee.UMCN,
                     Address = employee.Address,
                     DateOfBirth = employee.DateOfBirth,
+                    GenderType = employee.GenderType,
                     Email = employee.Email,
                     HomePhoneNum = employee.HomePhoneNum,
                     MobPhoneNum = employee.MobPhoneNum,

@@ -5,16 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HrTool.DAL
+namespace HrTool.BLL
 {
-    public interface IRepository
+    public interface IDepartmentService
     {
-        IList<Employee> GetAllEmployees();
-        Employee GetEmployeeById(string employeeId);
-        void CreateEmployee(Employee employeeToCreate);
-        void DeleteEmployee(string employeeId);
-        void UpdateEmployee(Employee employeeToUpdate);
-
         IList<Department> GetAllDepartments();
         Department GetDepartmentById(string departmentId);
         void CreateDepartment(Department departmentToCreate);

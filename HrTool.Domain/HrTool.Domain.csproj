@@ -48,11 +48,13 @@
     <Compile Include="Certificate.cs" />
     <Compile Include="Conference.cs" />
     <Compile Include="ContractType.cs" />
+    <Compile Include="Department.cs" />
     <Compile Include="Education.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeBenefit.cs" />
     <Compile Include="EmploymentDetails.cs" />
     <Compile Include="EmploymentType.cs" />
+    <Compile Include="GenderType.cs" />
     <Compile Include="MaritalStatus.cs" />
     <Compile Include="PersonalDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

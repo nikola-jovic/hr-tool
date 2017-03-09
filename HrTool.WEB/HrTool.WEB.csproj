@@ -167,6 +167,7 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RegistryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -178,6 +179,7 @@
     <Compile Include="Models\BasicEmployeeDetailsViewModel.cs" />
     <Compile Include="Models\CreateTrainingViewModel.cs" />
     <Compile Include="Models\CreateWageBonusViewModel.cs" />
+    <Compile Include="Models\DepartmentViewModel.cs" />
     <Compile Include="Models\EmployeeDetailsViewModel.cs" />
     <Compile Include="Models\UpdateBasicEmploymentDetailsViewModel.cs" />
     <Compile Include="Models\UpdatePersonalDetailsViewModel.cs" />
@@ -231,6 +233,8 @@
     <Content Include="Views\Employees\CreateConference.cshtml" />
     <Content Include="Views\Employees\CreateCertificate.cshtml" />
     <Content Include="Views\Employees\CreateEducation.cshtml" />
+    <Content Include="Views\Registry\ListDepartments.cshtml" />
+    <Content Include="Views\Registry\CreateDepartment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

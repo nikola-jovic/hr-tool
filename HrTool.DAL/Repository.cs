@@ -49,5 +49,35 @@ namespace HrTool.DAL
         {
             return _database.GetCollection<Employee>("Employees").Find(x => x.EmployeeId == employeeId).FirstOrDefault();
         }
+
+
+        //*****************************************************************************************
+
+        //GET ALL DEPARTMENTS
+        public IList<Department> GetAllDepartments()
+        {
+            return _database.GetCollection<Department>("Departments").Find(_ => true).ToList();
+        }
+        //GET DEPARTMENT BY ID
+        public Department GetDepartmentById(string departmentId)
+        {
+            return _database.GetCollection<Department>("Departments").Find(x => x.EmployeeId == departmentId).FirstOrDefault();
+        }
+        //CREATE
+        public void CreateDepartment(Department departmentToCreate)
+        {
+            _database.GetCollection<Department>("Departments").InsertOne(departmentToCreate);
+        }
+        //DELETE
+        public void DeleteDepartment(string departmentId)
+        {
+            _database.GetCollection<Department>("Departments").DeleteOne(x => x.DepartmentId == departmentId);
+        }
+        //UPDATE
+        public void UpdateDepartment(Department departmentToUpdate)
+        {
+            var filter = Builders<Department>.Filter.Eq("DepartmentId", departmentToUpdate.DepartmentId);
+            _database.GetCollection<Department>("Departments").FindOneAndReplace(filter, departmentToUpdate);
+        }
     }
 }

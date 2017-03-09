@@ -13,6 +13,7 @@ namespace HrTool.WEB.Models
         public string LastName { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
+        public GenderType GenderType { get; set; }
         public string UMCN { get; set; }
         public string MobPhoneNum { get; set; }
         public string HomePhoneNum { get; set; }
