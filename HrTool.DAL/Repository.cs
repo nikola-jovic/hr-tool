@@ -61,7 +61,7 @@ namespace HrTool.DAL
         //GET DEPARTMENT BY ID
         public Department GetDepartmentById(string departmentId)
         {
-            return _database.GetCollection<Department>("Departments").Find(x => x.EmployeeId == departmentId).FirstOrDefault();
+            return _database.GetCollection<Department>("Departments").Find(x => x.DepartmentId == departmentId).FirstOrDefault();
         }
         //CREATE
         public void CreateDepartment(Department departmentToCreate)

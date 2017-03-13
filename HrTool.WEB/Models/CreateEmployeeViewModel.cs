@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace HrTool.WEB.Models
 {
@@ -21,6 +22,11 @@ namespace HrTool.WEB.Models
         public string Address { get; set; }
         public MaritalStatus MaritatStatus { get; set; }
         public ContractType ContractType { get; set; }
+        public string DepartmentId { get; set; }
+        //public string DepartmentDisplayName { get; set; }
         public decimal InitialWage { get; set; }
+
+        public IList<SelectListItem> Departments { get; set; }
+
     }
 }

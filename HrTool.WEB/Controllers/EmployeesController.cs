@@ -10,10 +10,12 @@ namespace HrTool.WEB.Controllers
     public class EmployeesController : Controller
     {
         private readonly IEmployeeService _employeeService;
+        private readonly IDepartmentService _departmentService;
 
         public EmployeesController()
         {
             _employeeService = new EmployeeService();
+            _departmentService = new DepartmentService();
         }
 
         // GET: Employees
@@ -35,7 +37,22 @@ namespace HrTool.WEB.Controllers
         // CREATE EMPLOYEE
         public ActionResult Create()
         {
-            return View();
+            var departments = _departmentService.GetAllDepartments();
+            var model = new CreateEmployeeViewModel
+            {
+                Departments = new List<SelectListItem>()
+            };
+
+            foreach (var item in departments)
+            {
+                model.Departments.Add(new SelectListItem
+                {
+                    Text = item.Name,
+                    Value = item.DepartmentId
+                });
+            }
+
+            return View(model);
         }
         // POST:
         // CREATE EMPLOYEE
@@ -43,7 +60,6 @@ namespace HrTool.WEB.Controllers
         [HttpPost]
         public ActionResult Create(CreateEmployeeViewModel employee)
         {
-
             _employeeService.CreateEmployee(new Domain.Employee
             {
 
@@ -63,7 +79,7 @@ namespace HrTool.WEB.Controllers
                 },
                 EmploymentDetails = new Domain.EmploymentDetails
                 {
-
+                    DepartmentId = employee.DepartmentId,
                     ContractType = employee.ContractType,
                     Wage = new Domain.Wage(employee.InitialWage, employee.InitialWage, new List<Domain.WageChange>())
 
@@ -273,14 +289,29 @@ namespace HrTool.WEB.Controllers
         public ActionResult EditBasicEmploymentDetails(string id)
         {
             var myEmployee = _employeeService.GetEmployeeById(id);
+            var departments = _departmentService.GetAllDepartments();
             var basicEmploymentDetailsModel = new UpdateBasicEmploymentDetailsViewModel
             {
                 EmployeeId = myEmployee.EmployeeId,
+                DepartmentId = myEmployee.EmploymentDetails.DepartmentId,
                 ContractType = myEmployee.EmploymentDetails.ContractType,
                 EmploymentType = myEmployee.EmploymentDetails.EmploymentType,
                 RecommendedByEmployee = myEmployee.EmploymentDetails.RecommendedByEmployee,
-                AccountNumber = myEmployee.EmploymentDetails.AccountNumber
+                AccountNumber = myEmployee.EmploymentDetails.AccountNumber,
+                Departments = new List<SelectListItem>()
             };
+
+            foreach (var item in departments)
+            {
+                basicEmploymentDetailsModel.Departments.Add(new SelectListItem
+                {
+                    Text = item.Name,
+                    Value = item.DepartmentId,
+                    Selected = item.DepartmentId == myEmployee.EmploymentDetails.DepartmentId
+                });
+
+            }
+
             return View(basicEmploymentDetailsModel);
         }
 
@@ -289,6 +320,8 @@ namespace HrTool.WEB.Controllers
         public ActionResult EditBasicEmploymentDetails(UpdateBasicEmploymentDetailsViewModel employee)
         {
             var myEmployee = _employeeService.GetEmployeeById(employee.EmployeeId);
+
+            myEmployee.EmploymentDetails.DepartmentId = employee.DepartmentId;
             myEmployee.EmploymentDetails.ContractType = employee.ContractType;
             myEmployee.EmploymentDetails.EmploymentType = employee.EmploymentType;
             myEmployee.EmploymentDetails.RecommendedByEmployee = employee.RecommendedByEmployee;
@@ -363,9 +396,11 @@ namespace HrTool.WEB.Controllers
         public ActionResult Details(string id)
         {
             var myEmployee = _employeeService.GetEmployeeById(id);
+            var myDepartment = _departmentService.GetDepartmentById(myEmployee.EmploymentDetails.DepartmentId);
             var employee = new EmployeeDetailsViewModel
             {
                 EmployeeId = myEmployee.EmployeeId,
+                DepartmentDisplayName = myDepartment.Name,
                 PersonalDetails = myEmployee.PersonalDetails,
                 EmploymentDetails = myEmployee.EmploymentDetails
             };

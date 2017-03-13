@@ -9,6 +9,7 @@ namespace HrTool.WEB.Models
     public class EmployeeDetailsViewModel
     {
         public string EmployeeId { get; set; }
+        public string DepartmentDisplayName { get; set; }
         public PersonalDetails PersonalDetails { get; set; }
         public EmploymentDetails EmploymentDetails { get; set; }
     }

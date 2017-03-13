@@ -25,7 +25,7 @@ namespace HrTool.BLL
 
         public void DeleteDepartment(string departmentId)
         {
-            _repository.DeleteEmployee(departmentId);
+            _repository.DeleteDepartment(departmentId);
         }
 
         public IList<Department> GetAllDepartments()

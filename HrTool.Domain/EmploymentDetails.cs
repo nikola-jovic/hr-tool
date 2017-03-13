@@ -17,6 +17,7 @@ namespace HrTool.Domain
             WageBonuses = new List<WageBonus>();
         }
 
+        public string DepartmentId { get; set; }
         public ContractType ContractType { get; set; }
         public EmploymentType EmploymentType { get; set; }
         public string RecommendedByEmployee { get; set; } /* why */
