@@ -428,7 +428,7 @@
                 </dl>
 
                 <h5>Benefits:</h5>
-
+                @Html.ActionLink("Create", "CreateEmployeeBenefit", new { id = Model.EmployeeId })
                 <dl class="dl-horizontal">
                     @if (Model.EmploymentDetails.Benefits == null || Model.EmploymentDetails.Benefits.Count == 0)
                     {
@@ -436,7 +436,29 @@
                     }
                     else
                     {
-
+                        <dd>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.EmploymentDetails.Benefits)
+                                    {
+                                        <tr>
+                                            <td>@item.Name</td>
+                                            <td>@item.Description</td>
+                                            @*<td>
+                                                    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { Model.EmployeeId })
+                                                </td>*@
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </dd>
                     }
                 </dl>
 

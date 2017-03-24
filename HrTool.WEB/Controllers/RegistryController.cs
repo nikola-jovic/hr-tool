@@ -12,11 +12,13 @@ namespace HrTool.WEB.Controllers
     {
         private readonly IDepartmentService _departmentService;
         private readonly IEmployeeService _employeeService;
+        private readonly IEmployeeBenefitService _employeeBenefitService;
 
         public RegistryController()
         {
             _departmentService = new DepartmentService();
             _employeeService = new EmployeeService();
+            _employeeBenefitService = new EmployeeBenefitService();
         }
 
         // GET: Registry
@@ -34,7 +36,6 @@ namespace HrTool.WEB.Controllers
             });
             return View(listOfDepartment);
         }
-
 
         // GET:
         // CREATE Department
@@ -67,7 +68,7 @@ namespace HrTool.WEB.Controllers
                 EmployeeId = department.EmployeeId,
                 DepartmentEmail = department.DepartmentEmail,
                 Name = department.Name
-                
+
             });
 
             return RedirectToAction("ListDepartments");
@@ -97,7 +98,7 @@ namespace HrTool.WEB.Controllers
                 });
 
             }
-            
+
             return View(departmentToUpdate);
         }
 
@@ -142,5 +143,92 @@ namespace HrTool.WEB.Controllers
             var employee = employees.First(x => x.EmployeeId == department.EmployeeId);
             return employee.PersonalDetails.FirstName + " " + employee.PersonalDetails.LastName;
         }
+
+        //*************************************************************************************************
+
+        //LIST EMPLOYEE BENEFITS
+        public ActionResult ListEmployeeBenefits()
+        {
+            var myEmployeeBenefits = _employeeBenefitService.GetAllEmployeeBenefits();
+
+            var listOfEmployeeBenefits = myEmployeeBenefits.Select(x => new EmployeeBenefitViewModel
+            {
+                EmployeeBenefitId = x.EmployeeBenefitId,
+                Name = x.Name,
+                Description = x.Description
+            });
+            return View(listOfEmployeeBenefits);
+        }
+
+        // CREATE EMPLOYEE BENEFIT
+        public ActionResult CreateEmployeeBenefit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateEmployeeBenefit(EmployeeBenefitViewModel employeeBenefit)
+        {
+
+            _employeeBenefitService.CreateEmployeeBenefit(new Domain.EmployeeBenefit
+            {
+                Name = employeeBenefit.Name,
+                Description = employeeBenefit.Description
+
+            });
+
+            return RedirectToAction("ListEmployeeBenefits");
+        }
+
+        //EDIT EMPLOYEE BENEFIT
+        public ActionResult UpdateEmployeeBenefit(string id)
+        {
+            var myEmployeeBenefit = _employeeBenefitService.GetEmployeeBenefitById(id);
+
+            var EmployeeBenefitToUpdate = new EmployeeBenefitViewModel
+            {
+                EmployeeBenefitId = myEmployeeBenefit.EmployeeBenefitId,
+                Name = myEmployeeBenefit.Name,
+                Description = myEmployeeBenefit.Description
+            };
+
+            return View(EmployeeBenefitToUpdate);
+        }
+
+        //EDIT EMPLOYEE BENEFIT
+        [HttpPost]
+        public ActionResult UpdateEmployeeBenefit(EmployeeBenefitViewModel employeeBenefit)
+        {
+            var myEmployeeBenefit = _employeeBenefitService.GetEmployeeBenefitById(employeeBenefit.EmployeeBenefitId);
+
+            myEmployeeBenefit.Name = employeeBenefit.Name;
+            myEmployeeBenefit.Description = employeeBenefit.Description;
+
+            _employeeBenefitService.UpdateEmployeeBenefit(myEmployeeBenefit);
+            return RedirectToAction("ListEmployeeBenefits", new { id = employeeBenefit.EmployeeBenefitId });
+
+        }
+
+        //DELETE
+        public ActionResult DeleteEmployeeBenefit(string id)
+        {
+             var myEmployeeBenefit = _employeeBenefitService.GetEmployeeBenefitById(id);
+            var employeeBenefitToDelete = new EmployeeBenefitViewModel
+            {
+                EmployeeBenefitId = myEmployeeBenefit.EmployeeBenefitId,
+                Name = myEmployeeBenefit.Name,
+                Description = myEmployeeBenefit.Description
+            };
+            return View(employeeBenefitToDelete);
+        }
+
+        //DELETE
+        [HttpPost]
+        public ActionResult DeleteEmployeeBenefit(string id, FormCollection formcollection)
+        {
+            _employeeBenefitService.DeleteEmployeeBenefit(id);
+            return RedirectToAction("ListEmployeeBenefits");
+        }
+
     }
 }

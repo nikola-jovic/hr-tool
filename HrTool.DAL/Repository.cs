@@ -79,5 +79,34 @@ namespace HrTool.DAL
             var filter = Builders<Department>.Filter.Eq("DepartmentId", departmentToUpdate.DepartmentId);
             _database.GetCollection<Department>("Departments").FindOneAndReplace(filter, departmentToUpdate);
         }
+
+        //*****************************************************************************************
+
+        //GET ALL EMPLOYEE BENEFITS
+        public IList<EmployeeBenefit> GetAllEmployeeBenefits()
+        {
+            return _database.GetCollection<EmployeeBenefit>("EmployeeBenefits").Find(_ => true).ToList();
+        }
+        //GET EmployeeBenefit BY ID
+        public EmployeeBenefit GetEmployeeBenefitById(string employeeBenefitId)
+        {
+            return _database.GetCollection<EmployeeBenefit>("EmployeeBenefits").Find(x => x.EmployeeBenefitId == employeeBenefitId).FirstOrDefault();
+        }
+        //CREATE
+        public void CreateEmployeeBenefit(EmployeeBenefit employeeBenefitToCreate)
+        {
+            _database.GetCollection<EmployeeBenefit>("EmployeeBenefits").InsertOne(employeeBenefitToCreate);
+        }
+        //DELETE
+        public void DeleteEmployeeBenefit(string employeeBenefitId)
+        {
+            _database.GetCollection<EmployeeBenefit>("EmployeeBenefits").DeleteOne(x => x.EmployeeBenefitId == employeeBenefitId);
+        }
+        //UPDATE
+        public void UpdateEmployeeBenefit(EmployeeBenefit employeeBenefitToUpdate)
+        {
+            var filter = Builders<EmployeeBenefit>.Filter.Eq("EmployeeBenefitId", employeeBenefitToUpdate.EmployeeBenefitId);
+            _database.GetCollection<EmployeeBenefit>("EmployeeBenefits").FindOneAndReplace(filter, employeeBenefitToUpdate);
+        }
     }
 }

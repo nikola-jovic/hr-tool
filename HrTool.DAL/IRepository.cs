@@ -20,5 +20,11 @@ namespace HrTool.DAL
         void CreateDepartment(Department departmentToCreate);
         void DeleteDepartment(string departmentId);
         void UpdateDepartment(Department departmentToUpdate);
+
+        IList<EmployeeBenefit> GetAllEmployeeBenefits();
+        EmployeeBenefit GetEmployeeBenefitById(string employeeBenefitId);
+        void CreateEmployeeBenefit(EmployeeBenefit employeeBenefitToCreate);
+        void DeleteEmployeeBenefit(string employeeBenefitId);
+        void UpdateEmployeeBenefit(EmployeeBenefit employeeBenefitToUpdate);
     }
 }

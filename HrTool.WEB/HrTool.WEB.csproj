@@ -175,12 +175,14 @@
     <Compile Include="Models\CreateCertificateViewModel.cs" />
     <Compile Include="Models\CreateConferenceViewModel.cs" />
     <Compile Include="Models\CreateEducationViewModel.cs" />
+    <Compile Include="Models\CreateEmployeeBenefitViewModel.cs" />
     <Compile Include="Models\CreateEmployeeViewModel.cs" />
     <Compile Include="Models\BasicEmployeeDetailsViewModel.cs" />
     <Compile Include="Models\CreateTrainingViewModel.cs" />
     <Compile Include="Models\CreateWageBonusViewModel.cs" />
     <Compile Include="Models\DeleteDepartmentViewModel.cs" />
     <Compile Include="Models\DepartmentViewModel.cs" />
+    <Compile Include="Models\EmployeeBenefitViewModel.cs" />
     <Compile Include="Models\EmployeeDetailsViewModel.cs" />
     <Compile Include="Models\UpdateBasicEmploymentDetailsViewModel.cs" />
     <Compile Include="Models\UpdatePersonalDetailsViewModel.cs" />
@@ -238,6 +240,10 @@
     <Content Include="Views\Registry\CreateDepartment.cshtml" />
     <Content Include="Views\Registry\DeleteDepartment.cshtml" />
     <Content Include="Views\Registry\UpdateDepartment.cshtml" />
+    <Content Include="Views\Registry\ListEmployeeBenefits.cshtml" />
+    <Content Include="Views\Registry\CreateEmployeeBenefit.cshtml" />
+    <Content Include="Views\Registry\UpdateEmployeeBenefit.cshtml" />
+    <Content Include="Views\Registry\DeleteEmployeeBenefit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DepartmentService.cs" />
+    <Compile Include="EmployeeBenefitService.cs" />
     <Compile Include="IDepartmentService.cs" />
     <Compile Include="EmployeeService.cs" />
+    <Compile Include="IEmployeeBenefitService.cs" />
     <Compile Include="IEmployeeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

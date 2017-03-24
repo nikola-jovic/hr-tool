@@ -146,6 +146,41 @@ namespace HrTool.WEB.Controllers
             return RedirectToAction("Details", new { id = myEmployee.EmployeeId });
         }
 
+        //*************************
+
+        // GET:
+        // CREATE EMPLOYEE BENEFIT
+        public ActionResult CreateEmployeeBenefit(string id)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(id);
+            var model = new CreateTrainingViewModel
+            {
+                EmployeeId = myEmployee.EmployeeId
+            };
+            return View(model);
+        }
+        // POST:
+        // CREATE TRAINING
+        [HttpPost]
+        public ActionResult CreateTraining(CreateTrainingViewModel training)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(training.EmployeeId);
+            myEmployee.EmploymentDetails.Trainings.Add(new Domain.Training
+            {
+                Name = training.Name,
+                Started = training.Started,
+                Completed = training.Completed,
+                Description = training.Description
+            });
+            _employeeService.UpdateEmployee(myEmployee);
+
+            return RedirectToAction("Details", new { id = myEmployee.EmployeeId });
+        }
+
+
+        //*************************
+
+
         // GET:
         // CREATE CONFERENCE
         public ActionResult CreateConference(string id)
