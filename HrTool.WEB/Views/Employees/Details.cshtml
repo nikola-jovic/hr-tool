@@ -429,6 +429,7 @@
 
                 <h5>Benefits:</h5>
                 @Html.ActionLink("Create", "CreateEmployeeBenefit", new { id = Model.EmployeeId })
+                @Html.ActionLink("Edit", "EditEmployeeBenefits", new { id = Model.EmployeeId })
                 <dl class="dl-horizontal">
                     @if (Model.EmploymentDetails.Benefits == null || Model.EmploymentDetails.Benefits.Count == 0)
                     {

@@ -11,11 +11,13 @@ namespace HrTool.WEB.Controllers
     {
         private readonly IEmployeeService _employeeService;
         private readonly IDepartmentService _departmentService;
+        private readonly IEmployeeBenefitService _benefitService;
 
         public EmployeesController()
         {
             _employeeService = new EmployeeService();
             _departmentService = new DepartmentService();
+            _benefitService = new EmployeeBenefitService();
         }
 
         // GET: Employees
@@ -153,30 +155,90 @@ namespace HrTool.WEB.Controllers
         public ActionResult CreateEmployeeBenefit(string id)
         {
             var myEmployee = _employeeService.GetEmployeeById(id);
-            var model = new CreateTrainingViewModel
+            var myBenefits = _benefitService.GetAllEmployeeBenefits();
+            var model = new ManageEmployeeBenefitViewModel
             {
-                EmployeeId = myEmployee.EmployeeId
+                EmployeeId = myEmployee.EmployeeId,
+                AvailableBenefits = new List<Domain.EmployeeBenefit>()
             };
+
+            foreach (var item in myBenefits)
+            {
+                model.AvailableBenefits.Add(new Domain.EmployeeBenefit
+                {
+                    Name = item.Name,
+                    EmployeeBenefitId = item.EmployeeBenefitId
+                });
+            }
+
             return View(model);
         }
         // POST:
-        // CREATE TRAINING
+        // CREATE EMPLOYEE BENEFIT
         [HttpPost]
-        public ActionResult CreateTraining(CreateTrainingViewModel training)
+        public ActionResult CreateEmployeeBenefit(ManageEmployeeBenefitViewModel benefit)
         {
-            var myEmployee = _employeeService.GetEmployeeById(training.EmployeeId);
-            myEmployee.EmploymentDetails.Trainings.Add(new Domain.Training
+            var myEmployee = _employeeService.GetEmployeeById(benefit.EmployeeId);
+            var myBenefits = _benefitService.GetAllEmployeeBenefits();
+            foreach (var item in benefit.SelectedBenefitIds)
             {
-                Name = training.Name,
-                Started = training.Started,
-                Completed = training.Completed,
-                Description = training.Description
-            });
+                myEmployee.EmploymentDetails.Benefits.Add(new Domain.EmployeeBenefit
+                {
+                    Name = myBenefits.Where(x => x.EmployeeBenefitId == item).Select(y => y.Name).First(),
+                    EmployeeBenefitId = item,
+                    Description = myBenefits.Where(x => x.EmployeeBenefitId == item).Select(y => y.Description).First()
+                });
+            }
+            
             _employeeService.UpdateEmployee(myEmployee);
 
-            return RedirectToAction("Details", new { id = myEmployee.EmployeeId });
+            return RedirectToAction("Details", new { id = benefit.EmployeeId });
         }
 
+        //EDIT EditEmployeeBenefits
+        public ActionResult EditEmployeeBenefits(string id)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(id);
+            var myBenefits = _benefitService.GetAllEmployeeBenefits();
+            var model = new ManageEmployeeBenefitViewModel
+            {
+                EmployeeId = myEmployee.EmployeeId,
+                AvailableBenefits = new List<Domain.EmployeeBenefit>()
+            };
+
+            foreach (var item in myBenefits)
+            {
+                model.AvailableBenefits.Add(new Domain.EmployeeBenefit
+                {
+                    Name = item.Name,
+                    EmployeeBenefitId = item.EmployeeBenefitId,
+                });
+            }
+            model.SelectedBenefitIds = myEmployee.EmploymentDetails.Benefits.Select(x => x.EmployeeBenefitId).ToList();
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public ActionResult EditEmployeeBenefits(ManageEmployeeBenefitViewModel benefit)
+        {
+            var myEmployee = _employeeService.GetEmployeeById(benefit.EmployeeId);
+            var myBenefits = _benefitService.GetAllEmployeeBenefits();
+            myEmployee.EmploymentDetails.Benefits = new List<Domain.EmployeeBenefit>();
+            foreach (var item in benefit.SelectedBenefitIds)
+            {
+                myEmployee.EmploymentDetails.Benefits.Add(new Domain.EmployeeBenefit
+                {
+                    Name = myBenefits.Where(x => x.EmployeeBenefitId == item).Select(y => y.Name).First(),
+                    EmployeeBenefitId = item,
+                    Description = myBenefits.Where(x => x.EmployeeBenefitId == item).Select(y => y.Description).First()
+                });
+            }
+            _employeeService.UpdateEmployee(myEmployee);
+
+            return RedirectToAction("Details", new { id = benefit.EmployeeId });
+        }
 
         //*************************
 
